@@ -5,13 +5,15 @@
  */
 
 #include <behaviors.dtsi>
-#include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
 
-#define DEF 0
-#define LWR 1
-#define RSE 2
-#define ADJ 3
+#define DVORAK 0
+#define QWERTY 1
+#define NAVI 2
+#define SYMB 3
+#define NUMB 4
+#define FUNC 5
 
 &lt {
     quick_tap_ms = <200>;
@@ -19,31 +21,65 @@
 
 &mt {
     quick_tap_ms = <200>;
+    tapping-term-ms = <200>;
 };
 
 / {
+    macros {
+        assign: assign {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_tap &kp COLON &kp EQUAL &kp SPACE>;
+        };
+    };    
+    behaviors {
+        td0: tap_dance_0 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp COLON>, <&assign>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
+        DVORAK {
             bindings = <
-&kp LWIN  &kp GRAVE   &kp Q     &kp W      &kp E            &kp R      &kp T        &kp Y           &kp U      &kp I                   &kp O     &kp P       &kp LBKT  &mt RWIN RBKT
-          &kp LCTRL   &kp A     &kp S      &kp D            &kp F      &kp G        &kp H           &kp J      &kp K                   &kp L  &kp SEMI  &mt RCTRL SQT
-           &kp LALT   &kp Z     &kp X      &kp C            &kp V      &kp B        &kp N           &kp M  &kp COMMA                 &kp DOT  &kp FSLH  &mt RALT BSLH
-                             &kp LGUI  &lt 2 TAB  &mt LSHFT SPACE  &lt 1 RET    &lt 1 ESC  &mt RSHFT BSPC  &lt 2 DEL  &mt RGUI RIGHT_BRACKET
+&kp ESC  &kp GRAVE  &kp SQT   &kp COMMA  &kp DOT     &kp P      &kp Y          &kp F        &kp G      &kp C      &kp R        &kp L     &kp SLASH   &mt RWIN RBKT
+     &mt LCTRL TAB  &kp A          &kp O      &kp E       &kp U      &kp I          &kp D        &kp H      &kp T      &kp N        &kp S     &mt RCTRL MINUS
+         &kp LSHFT  &mt LWIN SEMI &mt LALT Q  &mt LCTRL J   &mt LSFT K   &kp X          &kp B        &mt RSHFT M  &mt RCTRL W   &mt RALT V  &mt RWIN Z  &kp RSHFT
+                           &kp ESC   &lt NAVI BSPC   &kp LALT   &kp SPACE            &kp ENTER     &lt SYMB ENTER    &lt NUMB SPACE    &lt FUNC DEL
             >;
         };
 
-        lower_layer {
+        QWERTY {
             bindings = <
-&trans       &kp UNDER    &kp F1  &kp F2     &kp F3    &kp F4     &kp F5       &kp F6    &kp F7     &kp F8    &kp F9   &kp F10          &kp F11  &mt RGUI F12
-        &mt LCTRL PLUS  &kp EXCL  &kp AT   &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp STAR  &kp LPAR  &kp RPAR  &mt RCTRL MINUS
-        &mt LALT EQUAL    &kp N1  &kp N2     &kp N3    &kp N4     &kp N5       &kp N6    &kp N7     &kp N8    &kp N9    &kp N0           &trans
-                                  &trans  &lt 3 TAB    &trans     &trans       &trans    &trans  &lt 3 DEL    &trans
+&kp ESC  &kp GRAVE  &kp Q     &kp W      &kp E       &kp R      &kp T          &kp Y        &kp U      &kp I                   &kp O     &kp P       &kp LBKT  &mt RWIN RBKT
+     &mt LCTRL TAB  &kp A     &kp S      &kp D       &kp F      &kp G          &kp H        &kp J      &kp K                   &kp L  &kp SEMI  &mt RCTRL SQT
+         &kp LSHFT  &kp Z     &kp X      &kp C       &kp V      &kp B          &kp N        &kp M  &kp COMMA                 &kp DOT  &kp FSLH  &mt RALT BSLH
+                           &kp ESC   &lt NAVI BSPC   &kp LALT   &kp SPACE            &kp ENTER     &lt SYMB ENTER    &lt NUMB SPACE    &lt FUNC DEL
             >;
         };
 
-        raise_layer {
+        NAVI {
+            bindings = <
+&trans  &trans    &kp LC(Z)    &kp LC(X)  &kp LC(C)  &kp LC(V)  &none       &none    &kp RC(INS)  &kp RS(DEL)    &kp RC(Z)  &none  &none   &trans  &trans
+    &mt LCTRL TAB &none  &none  &none  &none  &none      &kp LEFT &kp DOWN  &kp UP  &kp RIGHT &none &none
+&trans  &kp LWIN  &kp LALT  &kp LCTRL  &kp LSFT  &none       &kp INS  &kp HOME  &kp PG_DN  &kp PG_UP  &kp END  &trans
+    &trans  &trans  &trans  &trans          &trans  &kp ENTER  &kp SPACE  &kp DEL
+            >;
+        };
+
+        SYMB {
+            bindings = <
+&trans  &trans     &kp LS(LBKT)  &kp LS(N7)  &kp LS(N8)  &kp LS(N9)  &kp LS(RBKT)   &none  &to DVORAK   &none   &to QWERTY  &none  &none   &trans
+    &mt LCTRL TAB  &td0  &kp LS(N4)   &kp LS(N5)   &kp LS(N6)   &kp PLUS   &kp EQUAL  &kp LBKT   &kp RBKT  &none   &kp ENTER    &trans
+&trans   &kp LS(GRAVE)   &kp LS(N1)   &kp LS(N2)   &kp LS(N3)   &kp LS(BLSH)   &kp MINUS   &kp RSHFT   &kp RCTRL   &kp RALT   &kp RWIN  &trans
+    &kp LS(9)   &kp LS(0)   &kp LS(MINUS)   &trans      &trans   &trans    &kp SPACE   &kp BSPC
+            >;
+        };
+
+        NUMB {
             bindings = <
 &trans       &kp KP_NUM     &kp KP_SLASH  &kp KP_N7  &kp KP_N8  &kp KP_N9  &kp KP_MINUS    &kp C_VOL_UP  &kp HOME  &kp PSCRN  &kp PG_UP         &kp SLCK         &kp CAPS  &trans
         &mt LCTRL EQUAL  &kp KP_MULTIPLY  &kp KP_N4  &kp KP_N5  &kp KP_N6   &kp KP_PLUS      &kp C_MUTE  &kp LEFT     &kp UP  &kp RIGHT          &kp INS  &mt RCTRL K_APP
@@ -52,13 +88,14 @@
             >;
         };
 
-        adjust_layer {
+        FUNC {
             bindings = <
-&none  &bootloader         &none         &none         &none         &none         &none           &none         &none         &none         &none         &none  &bootloader  &none
-        &bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0   &bt BT_CLR
-        &sys_reset         &none         &none         &none         &none         &none           &none         &none         &none         &none         &none   &sys_reset
-                                         &none        &trans         &none        &trans          &trans         &none        &trans         &none
+&trans       &kp UNDER    &kp F1  &kp F2     &kp F3    &kp F4     &kp F5       &kp F6    &kp F7     &kp F8    &kp F9   &kp F10          &kp F11  &mt RGUI F12
+        &mt LCTRL PLUS  &kp EXCL  &kp AT   &kp HASH  &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS   &kp STAR  &kp LPAR  &kp RPAR  &mt RCTRL MINUS
+        &mt LALT EQUAL    &kp N1  &kp N2     &kp N3    &kp N4     &kp N5       &kp N6    &kp N7     &kp N8    &kp N9    &kp N0           &trans
+                                  &trans  &lt 3 TAB    &trans     &trans       &trans    &trans  &lt 3 DEL    &trans
             >;
         };
+
     };
 };
