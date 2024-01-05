@@ -76,7 +76,7 @@
 &trans  &trans         &kp LS(LBKT)   &kp LS(N7)  &kp LS(N8)  &kp LS(N9)     &kp LS(RBKT)    &none      &to DVORAK  &none      &to QWERTY  &none      &none   &trans
         &mt LCTRL TAB  &td0           &kp LS(N4)  &kp LS(N5)  &kp LS(N6)     &kp PLUS        &kp EQUAL  &kp LBKT    &kp RBKT   &none       &kp ENTER  &trans
         &trans         &kp LS(GRAVE)  &kp LS(N1)  &kp LS(N2)  &kp LS(N3)     &kp LS(BLSH)    &kp MINUS  &kp RSHFT   &kp RCTRL  &kp RALT    &kp RWIN   &trans
-                                      &kp LS(9)   &kp LS(0)   &kp LS(MINUS)  &trans          &trans     &trans      &kp SPACE  &kp BSPC
+                                      &kp LS(N9)  &kp LS(N0)  &kp LS(MINUS)  &trans          &trans     &trans      &kp SPACE  &kp BSPC
             >;
         };
 
