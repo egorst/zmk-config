@@ -32,12 +32,12 @@
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&kp COLON &kp EQUAL &kp SPACE>;
         };
-        torus: assign {
+        torus: torus {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&to QWERTY>, <&kp LA(LSHFT)>;
         };
-        toeng: assign {
+        toeng: toeng {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_tap>, <&to DVORAK>, <&kp LA(LSHFT)>;
