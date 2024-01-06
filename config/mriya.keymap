@@ -5,6 +5,7 @@
  */
 
 #include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/keys.h>
 
 #define DVORAK 0
@@ -13,6 +14,7 @@
 #define SYMB 3
 #define NUMB 4
 #define FUNC 5
+#define ADJU 6
 
 &lt {
     quick_tap_ms = <200>;
@@ -46,19 +48,19 @@
 
         DVORAK {
             bindings = <
-&kp ESC  &kp GRAVE      &kp SQT        &kp COMMA   &kp DOT        &kp P        &kp Y        &kp F      &kp G           &kp C           &kp R         &kp L       &kp SLASH        &mt RWIN RBKT
-         &mt LCTRL TAB  &kp A          &kp O       &kp E          &kp U        &kp I        &kp D      &kp H           &kp T           &kp N         &kp S       &mt RCTRL MINUS
-         &kp LSHFT      &mt LWIN SEMI  &mt LALT Q  &mt LCTRL J    &mt LSHFT K  &kp X        &kp B      &mt RSHFT M     &mt RCTRL W     &mt RALT V    &mt RWIN Z  &kp RSHFT
-                                       &kp ESC     &lt NAVI BSPC  &kp LALT     &kp SPACE    &kp ENTER  &lt SYMB ENTER  &lt NUMB SPACE  &lt FUNC DEL
+&kp ESC  &kp GRAVE      &kp SQT        &kp COMMA   &kp DOT        &kp P        &kp Y             &kp F      &kp G           &kp C           &kp R         &kp L       &kp SLASH        &mt RWIN RBKT
+         &mt LCTRL TAB  &kp A          &kp O       &kp E          &kp U        &kp I             &kp D      &kp H           &kp T           &kp N         &kp S       &mt RCTRL MINUS
+         &kp LSHFT      &mt LWIN SEMI  &mt LALT Q  &mt LCTRL J    &mt LSHFT K  &kp X             &kp B      &mt RSHFT M     &mt RCTRL W     &mt RALT V    &mt RWIN Z  &kp RSHFT
+                                       &kp ESC     &lt NAVI BSPC  &kp LALT     &lt ADJU LSHFT    &kp RSHFT  &lt SYMB ENTER  &lt NUMB SPACE  &lt FUNC DEL
             >;
         };
 
         QWERTY {
             bindings = <
-&kp ESC  &kp GRAVE      &kp Q  &kp W    &kp E          &kp R     &kp T        &kp Y      &kp U           &kp I           &kp O         &kp P     &kp LBKT       &mt RWIN RBKT
-         &mt LCTRL TAB  &kp A  &kp S    &kp D          &kp F     &kp G        &kp H      &kp J           &kp K           &kp L         &kp SEMI  &mt RCTRL SQT
-         &kp LSHFT      &kp Z  &kp X    &kp C          &kp V     &kp B        &kp N      &kp M           &kp COMMA       &kp DOT       &kp FSLH  &mt RALT BSLH
-                               &kp ESC  &lt NAVI BSPC  &kp LALT  &kp SPACE    &kp ENTER  &lt SYMB ENTER  &lt NUMB SPACE  &lt FUNC DEL
+&kp ESC  &kp GRAVE      &kp Q  &kp W    &kp E          &kp R     &kp T            &kp Y           &kp U           &kp I           &kp O         &kp P     &kp LBKT       &mt RWIN RBKT
+         &mt LCTRL TAB  &kp A  &kp S    &kp D          &kp F     &kp G            &kp H           &kp J           &kp K           &kp L         &kp SEMI  &mt RCTRL SQT
+         &kp LSHFT      &kp Z  &kp X    &kp C          &kp V     &kp B            &kp N           &kp M           &kp COMMA       &kp DOT       &kp FSLH  &mt RALT BSLH
+                               &kp ESC  &lt NAVI BSPC  &kp LALT  &lt ADJU LSHFT   &kp RSHFT       &lt SYMB ENTER  &lt NUMB SPACE  &lt FUNC DEL
             >;
         };
 
@@ -97,5 +99,15 @@
                                   &trans  &lt 3 TAB  &trans    &trans       &trans     &trans    &lt 3 DEL  &trans
             >;
         };
+
+        ADJU {
+            bindings = <
+&none  &bootloader    &none         &none         &none         &none         &none           &none         &none         &none         &none         &none          &bootloader  &none
+       &bt BT_CLR     &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &bt BT_SEL 4  &bt BT_SEL 3  &bt BT_SEL 2  &bt BT_SEL 1  &bt BT_SEL 0   &bt BT_CLR
+       &sys_reset     &none         &none         &none         &none         &none           &none         &none         &none         &none         &none          &sys_reset
+                                    &none         &trans        &none         &trans          &trans        &none         &trans        &none
+            >;
+        };
+
     };
 };
