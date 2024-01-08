@@ -46,23 +46,23 @@
 
     combos {
         compatible = "zmk,combos";
-        combo_excl {
-            timeout-ms = <100>;
-            key-positions = <16 17>;
-            bindings = <&kp EXCL>;
-        };
         combo_qmark {
-            timeout-ms = <100>;
-            key-positions = <17 18>;
+            timeout-ms = <50>;
+            key-positions = <16 17>;
             bindings = <&kp QMARK>;
         };
+        combo_excl {
+            timeout-ms = <50>;
+            key-positions = <17 18>;
+            bindings = <&kp EXCL>;
+        };
         combo_comma {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <21 22>;
             bindings = <&kp COMMA>;
         };
         combo_dot {
-            timeout-ms = <100>;
+            timeout-ms = <50>;
             key-positions = <22 23>;
             bindings = <&kp DOT>;
         };
