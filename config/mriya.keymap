@@ -44,12 +44,42 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+        combo_excl {
+            timeout-ms = <100>;
+            key-positions = <16 17>;
+            bindings = <&kp EXCL>;
+        };
+        combo_qmark {
+            timeout-ms = <100>;
+            key-positions = <17 18>;
+            bindings = <&kp QMARK>;
+        };
+        combo_comma {
+            timeout-ms = <100>;
+            key-positions = <21 22>;
+            bindings = <&kp COMMA>;
+        };
+        combo_dot {
+            timeout-ms = <100>;
+            key-positions = <22 23>;
+            bindings = <&kp DOT>;
+        };
+    };
     behaviors {
         td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp COLON>, <&assign>;
+        };
+    };
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <NAVI FUNC>;
+            then-layer = <ADJU>;
         };
     };
 
@@ -60,8 +90,8 @@
             bindings = <
 &kp ESC  &kp GRAVE      &kp SQT        &kp COMMA   &kp DOT        &kp P        &kp Y             &kp F      &kp G           &kp C           &kp R         &kp L       &kp SLASH        &mt RWIN RBKT
          &mt LCTRL TAB  &kp A          &kp O       &kp E          &kp U        &kp I             &kp D      &kp H           &kp T           &kp N         &kp S       &mt RCTRL MINUS
-         &kp LSHFT      &mt LWIN SEMI  &mt LALT Q  &mt LCTRL J    &mt LSHFT K  &kp X             &kp B      &mt RSHFT M     &mt RCTRL W     &mt RALT V    &mt RWIN Z  &kp RSHFT
-                                       &kp ESC     &lt NAVI BSPC  &kp LALT     &lt ADJU LSHFT    &kp RSHFT  &lt SYMB ENTER  &lt NUMB SPACE  &lt FUNC DEL
+         &sk LSHFT      &mt LWIN SEMI  &mt LALT Q  &mt LCTRL J    &mt LSHFT K  &kp X             &kp B      &mt RSHFT M     &mt RCTRL W     &mt RALT V    &mt RWIN Z  &sk RSHFT
+                                       &kp ESC     &lt NAVI BSPC  &kp LALT     &kp LSHFT         &kp RSHFT  &lt SYMB ENTER  &lt NUMB SPACE  &lt FUNC DEL
             >;
         };
 
@@ -69,8 +99,8 @@
             bindings = <
 &kp ESC  &kp GRAVE      &kp Q  &kp W   &kp E       &kp R          &kp T           &kp Y           &kp U           &kp I           &kp O            &kp P         &kp LBKT       &mt RWIN RBKT
          &mt LCTRL TAB  &kp A  &kp S   &kp D       &kp F          &kp G           &kp H           &kp J           &kp K           &kp L            &kp SEMI      &mt RCTRL SQT
-         &kp LSHFT      &mt LWIN Z     &mt LALT X  &mt LCTRL C    &mt LSHFT V     &kp B           &kp N           &mt RSHFT M     &mt RCTRL COMMA  &mt RALT DOT  &mt RWIN FSLH  &mt RALT BSLH
-                                       &kp ESC     &lt NAVI BSPC  &kp LALT        &lt ADJU LSHFT  &kp RSHFT       &lt SYMB ENTER  &lt NUMB SPACE   &lt FUNC DEL
+         &sk LSHFT      &mt LWIN Z     &mt LALT X  &mt LCTRL C    &mt LSHFT V     &kp B           &kp N           &mt RSHFT M     &mt RCTRL COMMA  &mt RALT DOT  &mt RWIN FSLH  &sk RSHFT
+                                       &kp ESC     &lt NAVI BSPC  &kp LALT        &kp LSHFT       &kp RSHFT       &lt SYMB ENTER  &lt NUMB SPACE   &lt FUNC DEL
             >;
         };
 
