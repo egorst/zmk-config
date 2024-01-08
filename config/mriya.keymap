@@ -48,23 +48,27 @@
         compatible = "zmk,combos";
         combo_qmark {
             timeout-ms = <50>;
+            layers = <QWERTY>;
             key-positions = <16 17>;
-            bindings = <&kp QMARK>;
+            bindings = <&kp AMPS>; /* qmark in russian map */
         };
         combo_excl {
             timeout-ms = <50>;
+            layers = <QWERTY>;
             key-positions = <17 18>;
             bindings = <&kp EXCL>;
         };
-        combo_comma {
+        combo_commaRus {
             timeout-ms = <50>;
+            layers = <QWERTY>;
             key-positions = <21 22>;
-            bindings = <&kp COMMA>;
+            bindings = <&kp QMARK>; /* comma in russian map */
         };
-        combo_dot {
+        combo_dotRus {
             timeout-ms = <50>;
+            layers = <QWERTY>;
             key-positions = <22 23>;
-            bindings = <&kp DOT>;
+            bindings = <&kp FSLH>; /* dot in russian map */
         };
     };
     behaviors {
